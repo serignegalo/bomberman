@@ -9,6 +9,7 @@ let then = Date.now();
 let fpsInterval = 400;
 const router = new Router();
 let player = null;
+let players = null
 let state = null;
 let ws = null;
 let mapGame = null;
@@ -24,7 +25,7 @@ router.addRoute("/", () => {
   DOM.addEventListener("#participate", "click", validateUsername);
 });
 router.addRoute("/running", () => {
-  let render = renderMap(mapGame);
+  let render = renderMap(players, player);
   DOM.setHTML("#app", render);
   updateMapView()
   mapNodes = getMapNodes(mapGame)
@@ -105,10 +106,12 @@ router.addRoute("/waiting", () => {
       DOM.setAttribute("#error", "class", "error");
     } else if (message.type === "running_game") {
       mapGame = message.data.map;
+      players = message.data.listPlayer
       canPain = true;
+      message.data.forEach
       if (player.username === message.data.player.username) {
         player = message.data.player;
-        DOM.setHTML("#nbrlive", message.data.player.livesCount);
+       // DOM.setHTML("#nbrlive", message.data.player.livesCount);
 
       }
       router.navigate("/running");
@@ -122,12 +125,8 @@ router.addRoute("/waiting", () => {
       if (player.username === message.data.player.username) {
         player = message.data.player;
         fpsInterval = player.speed;
-        DOM.setHTML("#nbrlive", message.data.player.livesCount);
-
+       // DOM.setHTML("#nbrlive", message.data.player.livesCount);
       }
-
-
-
       //updateMapView();
     } else if (message.type === "pose-bomb") {
       mapGame = message.data.map;
@@ -143,7 +142,7 @@ router.addRoute("/waiting", () => {
           };
           ws.send(JSON.stringify(dataAction));
         }, 1500);
-        DOM.setHTML("#nbrlive", message.data.player.livesCount);
+        //DOM.setHTML("#nbrlive", message.data.player.livesCount);
 
       }
       //updateMapView();
@@ -153,13 +152,17 @@ router.addRoute("/waiting", () => {
       canPain = true
       if (player.username === message.data.player.username) {
         player = message.data.player;
-        DOM.setHTML("#nbrlive", message.data.player.livesCount);
+        //DOM.setHTML("#nbrlive", message.data.player.livesCount);
 
       }
       // updateMapView();
     } else if (message.type === "after-explosion") {
       mapGame = message.data.map;
       clearExplosion(mapGame)
+      players = message.data.listPlayer
+      players.forEach((player)=>{
+        DOM.setHTML(`#${player.username}`, player.livesCount)
+      })
       canPain = true
       if (
         message.data.listPlayer.filter((player) => player.livesCount == 0)
@@ -173,7 +176,7 @@ router.addRoute("/waiting", () => {
           lost = true;
         }
         player = message.data.player;
-        DOM.setHTML("#nbrlive", message.data.player.livesCount);
+        //DOM.setHTML("#nbrlive", message.data.player.livesCount);
 
       }
       //updateMapView();

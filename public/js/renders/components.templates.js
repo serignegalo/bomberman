@@ -45,9 +45,24 @@ export function renderWaitingPlayers() {
 `;
 }
 
-export function renderMap() {
+export function renderMap(players, player) {
+  let render = ""
+   players.forEach(player => {
+    render += `<li> <span class="player-name">${player.username}</span>: <span id="${player.username}" class="liveValue">
+    ${player.livesCount} </span>
+    <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="32"
+            height="32"
+            viewBox="0 0 24 24"
+            class="heart"
+          >
+            <path
+              fill="white"
+              d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>
+</li>`
+  });
   return `  
-  
     <div class="left-game">
     <div class="card">
       <div class="card-header">
@@ -60,22 +75,14 @@ export function renderMap() {
         </div>
       </div>
       <div class="playerName">
-        <h2 id="playerUsername">player X</h2>
+        <h2 id="playerUsername">${player.username}</h2>
+        <span class="position-player"> You are positionned on </span>
         <p class="lineHeader"></p>
       </div>
       <div class="life">
-        <span class="heart"
-          ><svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="32"
-            height="32"
-            viewBox="0 0 24 24"
-          >
-            <path
-              fill="white"
-              d="m12 21.35l-1.45-1.32C5.4 15.36 2 12.27 2 8.5C2 5.41 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.08C13.09 3.81 14.76 3 16.5 3C19.58 3 22 5.41 22 8.5c0 3.77-3.4 6.86-8.55 11.53z"/></svg>
-          </span>
-        <h3 id="nbrlive" class="numberlive"></h3>
+        <ul id="live-content">
+          ${render}
+        </ul>
       </div>
       <div class="dataGame">
         <div class="powerUp">
@@ -96,9 +103,6 @@ export function renderMap() {
           </div>
           <span class="numberBombs">2</span>
         </div>
-
-        <span class="position-player"> You are positionned on </span>
-
       </div>
     </div>
   </div>  

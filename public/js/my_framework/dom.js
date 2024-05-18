@@ -114,7 +114,7 @@ export class DOM {
     if (parentElement) {
       parentElement.innerHTML = child;
     } else {
-      console.error(`Parent element "${parentSelector}" not found.`);
+      //console.error(`Parent element "${parentSelector}" not found.`);
     }
   }
 

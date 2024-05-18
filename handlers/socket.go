@@ -26,15 +26,14 @@ type ChatMessage struct {
 }
 
 type MessageResponse struct {
-	Type    string      `json:"type"`
-	Data    interface{} `json:"data"`
+	Type string      `json:"type"`
+	Data interface{} `json:"data"`
 }
 type DataAction struct {
 	Type     string `json:"type"`
 	Sense    string `json:"sense"`
 	Username string `json:"username"`
-	Message string      `json:"message"`
-
+	Message  string `json:"message"`
 }
 type DataResponse struct {
 	Map        [][]string    `json:"map"`
@@ -54,12 +53,12 @@ func ConnectionHandler(w http.ResponseWriter, r *http.Request) {
 	mutex.Lock()
 	clients[conn] = userName
 	mutex.Unlock()
-	if len(players)== 1{
+	if len(players) == 1 {
 		waitingPlayersNotif()
 		if waiting_players == 0 && len(players) <= 1 {
 			NotCompleteNotif()
 			return
-		}else{
+		} else {
 			startingGameNotif()
 			gameStartedNotif()
 		}
@@ -78,7 +77,7 @@ func ConnectionHandler(w http.ResponseWriter, r *http.Request) {
 				if err == nil && player.LivesCount > 0 {
 					beforeMove := player.Position
 					mapGame, player = game.MovePlayer(mapGame, player, action.Sense)
-					player.BeforeMove =  beforeMove
+					player.BeforeMove = beforeMove
 					players[indice] = player
 					//fmt.Println("pos:", player.Position)
 					dataResponse := DataResponse{
@@ -145,7 +144,15 @@ func ConnectionHandler(w http.ResponseWriter, r *http.Request) {
 					}
 					player.BombPosition = []game.Position{}
 					players[indice] = player
-					message.Type = "after-explosion"
+					dataResponse = DataResponse{
+						Map:        mapGame,
+						Player:     player,
+						ListPlayer: players,
+					}
+					message = MessageResponse{
+						Type: "after-explosion",
+						Data: dataResponse,
+					}
 					for client := range clients {
 						err = client.WriteJSON(message)
 						if err != nil {
@@ -315,8 +322,9 @@ func gameStartedNotif() {
 	// Envoi du message à tous les clients connectés
 	for client := range clients {
 		data := DataResponse{
-			Map:    mapGame,
-			Player: players[i],
+			Map:        mapGame,
+			Player:     players[i],
+			ListPlayer: players,
 		}
 		msg := MessageResponse{Type: "running_game", Data: data}
 		err := client.WriteJSON(msg)

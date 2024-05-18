@@ -26,7 +26,7 @@ func ValidateUserNameHandler(w http.ResponseWriter, r *http.Request) {
 	name := r.URL.Query().Get("name")
 	if error := game.ValidateUserName(userName, players, state); error != "" {
 		http.Error(w, error, http.StatusBadRequest)
-		fmt.Println("error validation user: ", error)
+		//fmt.Println("error validation user: ", error)
 		return
 	}
 	player := game.PLAYER{
