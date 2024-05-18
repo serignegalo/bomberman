@@ -16,8 +16,8 @@ var upgrader = websocket.Upgrader{}
 var mutex sync.Mutex
 var clients = make(map[*websocket.Conn]string)
 var broadcast = make(chan DataAction)
-var waiting_players = 10
-var waiting_start = 2
+var waiting_players = 20
+var waiting_start = 10
 var mapGame [][]string
 
 type ChatMessage struct {
