@@ -52,7 +52,7 @@ export function renderMap(players, player) {
     ${player.livesCount} </span>
     <svg
             xmlns="http://www.w3.org/2000/svg"
-            width="32"
+            width="20"
             height="32"
             viewBox="0 0 24 24"
             class="heart"

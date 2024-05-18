@@ -35,9 +35,10 @@
   }
 
   .position-player {
-    color: gray;
+    color: #939ca9;
     font-size: 17px;
-  }
+    text-align: center;
+}
 
   .container {
     background-color: #fff;
@@ -336,38 +337,40 @@
 
   .card {
     display: flex;
-    align-items: center;
     flex-direction: column;
     padding: 5px 12px;
     border-radius: 5px;
+    height: 540px;
     box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.1);
-  }
-
-  .card-header {
-    display: flex;
-    justify-content: center;
-    background-color: #0082D7;
-    width: 95%;
-    height: 15%;
-    border-radius: 5px;
-    margin-top: 5px;
-
-  }
-
-  .playerName {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
     align-items: center;
-  }
+    justify-content: space-between;
+}
 
-  #playerUsername {
-    color: #939CA9;
-    font-weight: 500;
-    padding: 8px;
-    padding-bottom: 2px;
-    margin: 0;
-  }
+.card-header {
+  display: flex;
+  justify-content: center;
+  background-color: #0082D7;
+  width: 95%;
+  height: 15%;
+  border-radius: 5px;
+  margin-top: 5px;
+  align-items: center;
+}
+
+.playerName {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#playerUsername {
+  color: #939CA9;
+  font-weight: 500;
+  padding: 8px;
+  padding-bottom: 2px;
+  margin: 0;
+}
 
   .lineHeader {
     height: 2px;
@@ -380,23 +383,25 @@
   .life {
     display: flex;
     width: 100%;
-    flex-direction: column;
     background-color: red;
     color: #fff;
-    padding: 10px;
     border-radius: 5px;
-  }
-  .life ul{
-    list-style: none;
-  }
-
-  #live-content li{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
     justify-content: center;
-    gap: 2px;
-  }
+}
+.life ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#live-content li {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+  gap: 2px;
+  align-items: center;
+}
   .player-name{
     font-size: 18px;
   }
