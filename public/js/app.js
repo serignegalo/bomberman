@@ -29,6 +29,7 @@ router.addRoute("/running", () => {
   DOM.setHTML("#app", render);
   updateMapView()
   mapNodes = getMapNodes(mapGame)
+  console.log("---- player ---- ", player);
   let posMessage = null;
   if (player.number === "player1") {
     posMessage = "You are positionned on left top";
