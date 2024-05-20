@@ -1,0 +1,154 @@
+body{
+    font-family: 'Kavoon', cursive;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    border: 0;
+    margin: 0;}
+
+.card{
+    color: #222222;
+    background-color: #fff;
+    padding: 16px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(77, 77, 77, 0.5);
+    display: inline-block;
+    width: 425px;
+    height: 285px;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    z-index: 1;
+    flex-direction: column;
+}
+
+.playAgain{
+    font-weight: 700;
+    width: 250px;
+    height: 25px;
+    font-size: 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    background-color:#ff6347;
+    text-align: center;
+}
+
+.playAgain :hover {
+    background: #000;
+}
+
+.overlay{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgb(0 0 0 / 70%);
+    display: flex;
+}
+
+.card-header{
+    display: flex;
+    justify-content: center;
+    background-color: #0082D7;
+    width: 95%;
+    height: 15%;
+    border-radius: 5px;
+    margin-top: 5px;
+    position: relative;
+
+}
+
+.playerName{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#name{
+    margin: 30px 0 15px;
+    color: #939CA9;
+}
+
+.line{
+    height: 2px;
+    background-color: #939CA9;
+    width: 200px;
+    border-radius: 5px;
+}
+
+.life{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: red;
+    width: 120px;
+    height: 50px;
+    margin:20px 10px 30px;
+    border-radius: 5px;
+}
+
+.heart{
+    margin: 20px;
+}
+
+.lifeNumber{
+    position: absolute;
+    font-size: 30px;
+    color: #fff;
+    top: 1.5px;
+    left: 80px;
+}
+
+.bgImage{
+    background-color: tomato;
+    width: 43px;
+    height: 43px;
+    padding: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 65px;
+    /* left: 75px; */
+}
+
+.powerUp{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.asset{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    padding: 4px;
+    box-shadow: 0 0 9px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    margin-right: 20px;
+}
+
+.flame{
+    width: 30px;
+    font-size: 20px;
+}
+
+.numberBombs{
+    position: absolute;
+    font-size: 24px;
+    left: 50px;
+    top: 2px;
+}
